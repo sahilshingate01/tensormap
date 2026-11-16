@@ -71,7 +71,11 @@ def _no_background_training(monkeypatch):
 
     async def mock_analyze_quality(*args, **kwargs):
         return (
-            {"success": True, "message": "ok", "data": {"can_train": True, "issues": []}},
+            {
+                "success": True,
+                "message": "ok",
+                "data": {"can_train": True, "issues": []},
+            },
             200,
         )
 
@@ -119,7 +123,14 @@ def test_start_training_runs_quality_analysis_in_threadpool(client, db_session, 
     async def tracked_analyze(*args, **kwargs):
         nonlocal analysis_thread
         analysis_thread = threading.get_ident()
-        return {"success": True, "message": "ok", "data": {"can_train": True, "issues": []}}, 200
+        return (
+            {
+                "success": True,
+                "message": "ok",
+                "data": {"can_train": True, "issues": []},
+            },
+            200,
+        )
 
     monkeypatch.setattr("app.routers.training.analyze_dataset_quality", tracked_analyze)
 
