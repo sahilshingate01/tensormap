@@ -70,8 +70,7 @@ async def start_training(request: TrainingStartRequest, db: Session = Depends(ge
     # Reject early if we're already at the concurrency limit (raises 429).
     check_concurrency_limit(db)
 
-    quality_body, quality_status = await run_in_threadpool(
-        analyze_dataset_quality,
+    quality_body, quality_status = await analyze_dataset_quality(
         db,
         file_id=model.file_id,
         target_field=model.target_field,
