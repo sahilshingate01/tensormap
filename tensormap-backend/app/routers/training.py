@@ -12,7 +12,6 @@ jobs; there is no per-user authorization to enforce.
 import asyncio
 
 from fastapi import APIRouter, Depends, Query
-from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import JSONResponse, Response
 from sqlmodel import Session, select
 

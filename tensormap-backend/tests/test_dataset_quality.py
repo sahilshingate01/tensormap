@@ -1,6 +1,5 @@
 """Tests for read-only training dataset quality reports."""
 
-import asyncio
 import uuid
 from pathlib import Path
 from types import SimpleNamespace

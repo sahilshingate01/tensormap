@@ -21,7 +21,12 @@ def _response(status_code: int, success: bool, message: str, data: Any = None) -
     return {"success": success, "message": message, "data": data}, status_code
 
 
-def _analyze_csv_sync(path: Path, target_field: str | None, problem_type_id: int | None, training_split: float | None) -> dict[str, Any]:
+def _analyze_csv_sync(
+    path: Path,
+    target_field: str | None,
+    problem_type_id: int | None,
+    training_split: float | None,
+) -> dict[str, Any]:
     """Synchronous CSV analysis (runs in thread pool).
 
     This contains all the blocking pandas operations.
