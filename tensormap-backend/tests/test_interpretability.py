@@ -8,7 +8,6 @@ Uses test fixtures from tests/fixtures/create_test_model.py that create
 synthetic datasets and trained models without requiring the full data pipeline.
 """
 
-import asyncio
 from datetime import UTC, datetime
 from pathlib import Path
 from unittest.mock import MagicMock, patch
