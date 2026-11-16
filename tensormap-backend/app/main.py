@@ -131,6 +131,7 @@ async def lifespan(app: FastAPI):
                 await asyncio.sleep(300)  # 5 minutes
                 try:
                     from app.services.training_service import orphan_recovery
+
                     recovered = orphan_recovery()
                     if recovered > 0:
                         logger.info(f"Periodic orphan recovery: marked {recovered} stale job(s) as failed")
