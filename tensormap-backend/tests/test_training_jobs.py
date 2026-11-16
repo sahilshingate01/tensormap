@@ -4,7 +4,6 @@ Background training is patched out in HTTP tests so we deterministically test
 the request/persistence behaviour without spinning up a real Keras run.
 """
 
-import asyncio
 import threading
 from datetime import UTC, datetime, timedelta
 from unittest.mock import Mock
@@ -117,7 +116,6 @@ def test_start_training_launches_background(client, db_session, _no_background_t
 
 def test_start_training_runs_quality_analysis_in_threadpool(client, db_session, monkeypatch):
     _seed_model(db_session, "threaded-quality")
-    event_loop_thread = None
     analysis_thread = None
 
     async def tracked_analyze(*args, **kwargs):

@@ -14,6 +14,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 from sklearn.metrics import (
     auc,
     average_precision_score,
@@ -199,9 +200,9 @@ class InterpretabilityService:
 
     def __init__(self):
         self.cache = AnalysisCache()
-        self._model_cache: dict[str, "tf.keras.Model"] = {}
+        self._model_cache: dict[str, tf.keras.Model] = {}
 
-    def _get_model(self, job_id: str) -> "tf.keras.Model":
+    def _get_model(self, job_id: str) -> tf.keras.Model:
         """Get cached model or load from disk.
 
         Args:
@@ -210,8 +211,6 @@ class InterpretabilityService:
         Returns:
             Loaded Keras model
         """
-        import tensorflow as tf
-
         if job_id in self._model_cache:
             return self._model_cache[job_id]
 
@@ -762,7 +761,6 @@ class InterpretabilityService:
             Dictionary with features, importances_mean, importances_std,
             n_samples_used, n_repeats, analysis_type
         """
-        import tensorflow as tf
         from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin
         from sklearn.inspection import permutation_importance
 

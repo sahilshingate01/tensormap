@@ -76,7 +76,9 @@ def generate_code(model_name: str, db: Session) -> str:
         template = template_env.get_template(template_path)
     except TemplateNotFound as e:
         logger.error("Template not found: %s", str(e))
-        raise CodeGenerationError(f"Code generation template not found for model type {model_configs.model_type}") from e
+        raise CodeGenerationError(
+            f"Code generation template not found for model type {model_configs.model_type}"
+        ) from e
     except TemplateSyntaxError as e:
         logger.error("Template syntax error in %s: %s", e.filename or "unknown", e.message)
         raise CodeGenerationError(f"Code generation template has a syntax error: {e.message}") from e
